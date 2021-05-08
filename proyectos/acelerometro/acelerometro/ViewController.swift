@@ -6,46 +6,45 @@
 //
 
 import UIKit
+
 import CoreMotion
 
 class ViewController: UIViewController {
-
-    @IBOutlet weak var ejex: NSLayoutConstraint!
-    @IBOutlet weak var ejey: UILabel!
-    @IBOutlet weak var ejex2: UILabel!
-    @IBOutlet weak var ejez: UILabel!
+     
+    @IBOutlet weak var ejeX: UILabel!
+    @IBOutlet weak var ejeY: UILabel!
+    @IBOutlet weak var ejeZ: UILabel!
     
     var motion = CMMotionManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            
-        if motion.isDeviceMotionAvailable{
-            print("Esta disponible")
+        
+        if motion.isDeviceMotionAvailable {
+            print("Si esta disponible el acelerómetro")
             obtieneAcelerometro()
         }
-        else{
-            print("No esta disponible")
-        }
-        
+        else {
+            print("No esta disponible el acelerómetro")
+        }   
     }
     
-    func obtieneAcelerometro(){
+    func obtieneAcelerometro() {
         
         motion.accelerometerUpdateInterval = 0.5
-        motion.startAccelerometerUpdates(to: OperationQueue.current!){
-            (data, error) in
+        motion.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
             
             if let datos = data {
+                self.view.reloadInputViews()
+                
                 let x = datos.acceleration.x
                 let y = datos.acceleration.y
                 let z = datos.acceleration.z
                 
-                self.ejex2.text = "x: \(Double(x))"
-                self.ejey.text = "x: \(Double(y))"
-                self.ejez.text = "x: \(Double(z))"
-                
-            }
+                self.ejeX.text = "x: \(Double(x))"
+                self.ejeY.text = "y: \(Double(y))"
+                self.ejeZ.text = "z: \(Double(z))"   
+            }   
         }
     }
 }

@@ -9,19 +9,14 @@ import UIKit
 import MapKit
 
 class Ciudad: NSObject, MKAnnotation {
-    var coordinate: CLLocationCoordinate2D
     
-
+    var coordinate: CLLocationCoordinate2D
     var title: String?
     var info: String?
     
-    init(titulo:String, coordinate:CLLocationCoordinate2D, info:String) {
-        
+    init(title:String, coordinate: CLLocationCoordinate2D, info:String) {
+        self.title = title
         self.coordinate = coordinate
-        self.title = titulo
         self.info = info
     }
-    
-    
-    
 }
